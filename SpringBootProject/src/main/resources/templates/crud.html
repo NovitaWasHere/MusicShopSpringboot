@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud 07/11</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body style="margin:0%" class="bg-info">
+    <header class="bg-info" style="display: flex;align-items: center;justify-content: center;">
+        <div class="h2 text-center"><h1>CRUD Usuarios</h1></div>
+    </header>
+    <section class="bg-light">
+        <div class="container mt-4">
+            <br style="display:block;width: 50%;margin: auto;">
+			<a th:href="@{agregarloUsuario}" class="btn btn-primary">Nuevo Usuario</a>
+			<a th:href="@{/}" class="btn btn-primary">Home</a>
+            <br>
+            <table class="table">
+                <!-- Encabezado -->
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Contraseña</th>
+                        <th>Edad</th>
+                         <th>Rol</th>
+
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <!-- Cuerpo -->
+	                <tbody>
+                    <tr th:each="usuario:${usuarios}">
+                        <td th:text="${usuario.id}"></td>
+                        <td th:text="${usuario.nombre}"></td>
+                        <td th:text="${usuario.contrasena}"></td>
+                        <td th:text="${usuario.edad}"></td>
+                         <td th:text="${usuario.rol}"></td>
+                        <td>
+                            <a th:href="@{/editarloUsuario/} + ${usuario.id}" class="btn btn-warning">Editar</a>
+                            <a th:href="@{/eliminarloUsuario/} + ${usuario.id}" class="btn btn-danger" id="eliminarlo" aria-disabled="true">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <header class="bg-info">
+		<h1 class="text-center">CRUD Instrumentos</h1>
+    </header>
+    <section class="bg-light">
+        <div class="container mt-4">
+            <br>
+			<a th:href="@{agregarloInstrumento}" class="btn btn-primary">Nuevo Instrumento</a>
+            <br>
+            <table class="table">
+                <!-- Encabezado -->
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Descripcion</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <!-- Cuerpo -->
+	                <tbody>
+                    <tr th:each="instrumento:${instrumentos}">
+                        <td th:text="${instrumento.id}"></td>
+                        <td th:text="${instrumento.nombre}"></td>
+                        <td th:text="${instrumento.precio}"></td>
+                        <td th:text="${instrumento.descripcion}"></td>
+                        <td>
+                            <a th:href="@{/editarloInstrumento/} + ${instrumento.id}" class="btn btn-warning">Editar</a>
+                            <a th:href="@{/eliminarloInstrumento/} + ${instrumento.id}"  class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+<script>
+window.onload = function(){
+
+    let rol = parseInt(document.getElementById("invisible").innerHTML);
+
+	console.log(rol)
+
+}
+</script>
+</html>
+

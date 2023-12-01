@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda</title>
+    <link rel="stylesheet" href="../static/Css/styles.css">
+    <script src="https://kit.fontawesome.com/4ccffeaa77.js" crossorigin="anonymous"></script>
+</head>
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+body{
+
+    margin: 0;
+    background-color: brown;
+    word-wrap: break-word;
+
+}
+header{
+
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    padding: 10px;
+    grid-template-columns: auto auto ;
+    border: 10px solid black;
+
+}
+header img{
+
+    color: white;
+    display: block;
+    width: 70px;
+    height: 110px;
+
+}
+footer{
+
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    padding: 10px;
+    grid-template-columns: auto auto;
+    border: 10px solid black;
+
+}
+footer img{
+
+    color: white;
+    display: block;
+    width: 70px;
+    height: 110px;
+
+}
+h1{
+
+    color: rgb(26, 28, 29);
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+
+}
+.botones{
+
+    display: grid;
+    grid-template-columns: auto auto auto;
+    float: right;
+    place-items: center;
+
+}
+a:hover{
+
+    margin-bottom: 1px;
+    border-color: rgb(43, 226, 67);
+
+}
+.presentacion{
+
+    width: 50%;
+    margin: auto;
+    background-color: aliceblue;
+    border: 5px solid black;
+
+}
+.section1{
+
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+}
+.bloque{
+
+    width: auto;
+    margin-top: 5%;
+
+}
+.bloqueGrid{
+
+    width: 90%;
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    background-color: aliceblue;
+    border: 5px solid black;
+    word-wrap: break-word;
+
+
+}
+.bloqueProducto{
+
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    border: 1px solid black;
+    width: 100%;
+    word-wrap: break-word;
+
+}
+.bloqueProducto img{
+
+    width: 150px;
+    height: 150px;
+    box-shadow: 5px 5px 5px 5px;
+
+}
+.bloqueListado{
+
+    display: grid;
+    grid-template-columns: 30% 70%;
+
+}
+.PanelLateral{
+
+    width: 70%;
+    border: 5px solid black;
+    background-color: aliceblue;
+    margin-left: 10%;
+    word-wrap: break-word;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.icono{
+	
+	position: relative;
+	z-index: 1;
+	left: 100px;
+	top: 15px;
+	
+}
+</style>
+<body>
+    <header id="heading">
+        <div class="icono"><a th:href="@{/}"><i class="fa-solid fa-music" style="color: #000000;font-size: 50px;"></i></a></div>
+        <div class="botones">
+            <nav><a href=""><h1>Recomendaciones</h1></a></nav>
+            <nav><a href=""><h1>Sobre nosotros</h1></a></nav>
+            <nav><a th:href="@{crud}"><i class="fa-regular fa-user" style="color: #000000;font-size: 50px;"></i></a></nav>
+        </div>
+    </header>
+    <section class="section1">
+        <div class="presentacion">
+            <h1>Bienvenido a Violinate</h1>
+        </div>
+        <div class="bloque">
+            <div class="bloqueListado">
+                <div class="PanelLateral">
+                    <h1>Descubre las caracteristicas y nuestras recomendaciones en nuestro apartado de informacion</h1>
+                </div>
+                <div class="bloqueGrid" th:each="instrumento:${instrumentos}">
+                    <div class="bloqueProducto">
+                        <h1 th:text="${instrumento.nombre}"></h1>
+                        <img src="https://thumbs.dreamstime.com/b/violin-8128955.jpg" alt="">
+                        <h3  th:text="${instrumento.precio}">$</h3>
+                        <p th:text="${instrumento.descripcion}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="icono"><a href=""><i class="fa-solid fa-music" style="color: #000000;font-size: 50px;"></i></a></div>
+        <div class="botones">
+            <nav><a href=""><h1>Recomendaciones</h1></a></nav>
+            <nav><a href=""><h1>Sobre nosotros</h1></a></nav>
+        </div>
+    </footer>
+</body>
+</html>

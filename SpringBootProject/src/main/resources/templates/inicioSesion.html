@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda</title>
+    <link rel="stylesheet" href="../static/Css/styles.css">
+    <script src="https://kit.fontawesome.com/4ccffeaa77.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+body{
+
+    margin: 0;
+    background-color: brown;
+    word-wrap: break-word;
+
+}
+header{
+
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    padding: 10px;
+    grid-template-columns: auto auto ;
+    border: 10px solid black;
+
+}
+header img{
+
+    color: white;
+    display: block;
+    width: 70px;
+    height: 110px;
+
+}
+footer{
+
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    padding: 10px;
+    grid-template-columns: auto auto;
+    border: 10px solid black;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+}
+footer img{
+
+    color: white;
+    display: block;
+    width: 70px;
+    height: 110px;
+
+}
+h1{
+
+    color: rgb(26, 28, 29);
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+
+}
+.botones{
+
+    display: grid;
+    grid-template-columns: auto auto auto;
+    float: right;
+    place-items: center;
+
+}
+a:hover{
+
+    margin-bottom: 1px;
+    border-color: rgb(43, 226, 67);
+
+}
+.presentacion{
+
+    width: 50%;
+    margin: auto;
+    background-color: aliceblue;
+    border: 5px solid black;
+
+}
+.section1{
+
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 50%;
+    margin: auto;
+    height: 100%;
+
+}
+.bloque{
+
+    width: auto;
+    margin-top: 5%;
+
+}
+.bloqueGrid{
+
+    width: 90%;
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    background-color: aliceblue;
+    border: 5px solid black;
+    word-wrap: break-word;
+
+
+}
+.bloqueProducto{
+
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    border: 1px solid black;
+    width: 100%;
+    word-wrap: break-word;
+
+}
+.bloqueProducto img{
+
+    width: 150px;
+    height: 150px;
+    box-shadow: 5px 5px 5px 5px;
+
+}
+.bloqueListado{
+
+    display: grid;
+    grid-template-columns: 30% 70%;
+
+}
+.PanelLateral{
+
+    width: 70%;
+    border: 5px solid black;
+    background-color: aliceblue;
+    margin-left: 10%;
+    word-wrap: break-word;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.icono{
+	
+	position: relative;
+	z-index: 1;
+	left: 100px;
+	top: 15px;
+	
+}
+</style>
+<body>
+    <header>
+        <div class="icono"><a th:href="@{/}"><i class="fa-solid fa-music" style="color: #000000;font-size: 50px;"></i></a></div>
+        <div class="botones">
+            <nav><a href=""><h1>Recomendaciones</h1></a></nav>
+            <nav><a href=""><h1>Sobre nosotros</h1></a></nav>
+            <nav><a th:href="@{inicioSesion}"><i class="fa-regular fa-user" style="color: #000000;font-size: 50px;"></i></a></nav>
+        </div>
+    </header>
+    <section class="section1">
+        <form th:method="post" th:action="@{/validar}"  th:object="${usuario}">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Inicio Sesion</h1>
+                </div>
+                <div class="card-body">
+                        <!-- Nombre -->
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text"  th:field="*{nombre}" class="form-control" id="names" >
+                    </div>
+                        <!-- Contraseña -->
+                    <div class="form-group">
+                        <label for="contrasena">Contraseña</label>
+                         <input type="text" th:field="*{contrasena}"  class="form-control"  id="passwords" >
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input type="submit" class="btn btn-success" style="display: block;margin: auto;">
+                </div>
+            </div>
+        </form>
+        <br>
+        <div><h1>No tienes cuenta? <a th:href="@{registro}">¡Registrate Aqui!</a></h1></div>
+    </section>
+    <footer>
+        <div class="icono"><a href=""><i class="fa-solid fa-music" style="color: #000000;font-size: 50px;"></i></a></div>
+        <div class="botones">
+            <nav><a href=""><h1>Recomendaciones</h1></a></nav>
+            <nav><a href=""><h1>Sobre nosotros</h1></a></nav>
+        </div>
+    </footer>
+</body>
+
+<script>
+    window.onload = function(){
+
+        let x = document.getElementById("heading");
+
+        let rol = parseInt(document.getElementById("invisible").innerHTML);
+
+        console.log(rol)
+
+        if(rol==1){
+
+            x.innerHTML = <div class="icono"><a th:href="@{/}"><i class="fa-solid fa-music" style="color: #000000;font-size: 50px;"></i></a></div>+
+                <div class="botones">+
+                    <nav><a href=""><h1>Recomendaciones</h1></a></nav>+
+                    <nav><a href=""><h1>Sobre nosotros</h1></a></nav>+
+                    <nav><a th:href="@{crud}"><i class="fa-regular fa-user" style="color: #000000;font-size: 50px;"></i></a></nav>+
+                </div>;
+
+        }else if(rol ==0){
+
+            x.innerHTML = <div class="icono"><a th:href="@{/}"><i class="fa-solid fa-music" style="color: #000000;font-size: 50px;"></i></a></div>+
+                <div class="botones">+
+                    <nav><a href=""><h1>Recomendaciones</h1></a></nav>+
+                    <nav><a href=""><h1>Sobre nosotros</h1></a></nav>+
+                    <nav><a th:href="@{inicioSesion}"><i class="fa-regular fa-user" style="color: #000000;font-size: 50px;"></i></a></nav>+
+                </div>;
+
+        }
+    }
+</script>
+</html>

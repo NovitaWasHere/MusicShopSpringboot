@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+body{
+
+    margin: 0;
+    background-color: brown;
+    word-wrap: break-word;
+
+}
+header{
+
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    padding: 10px;
+    grid-template-columns: auto auto ;
+    border: 10px solid black;
+
+}
+header img{
+
+    color: white;
+    display: block;
+    width: 70px;
+    height: 110px;
+
+}
+footer{
+
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    padding: 10px;
+    grid-template-columns: auto auto;
+    border: 10px solid black;
+
+}
+footer img{
+
+    color: white;
+    display: block;
+    width: 70px;
+    height: 110px;
+
+}
+h1{
+
+    color: rgb(26, 28, 29);
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+
+}
+.botones{
+
+    display: grid;
+    grid-template-columns: auto auto auto;
+    float: right;
+    place-items: center;
+
+}
+a:hover{
+
+    margin-bottom: 1px;
+    border-color: rgb(43, 226, 67);
+
+}
+.presentacion{
+
+    width: 50%;
+    margin: auto;
+    background-color: aliceblue;
+    border: 5px solid black;
+
+}
+.section1{
+
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+}
+.bloque{
+
+    width: auto;
+    margin-top: 5%;
+
+}
+.bloqueGrid{
+
+    width: 90%;
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    background-color: aliceblue;
+    border: 5px solid black;
+    word-wrap: break-word;
+
+
+}
+.bloqueProducto{
+
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    border: 1px solid black;
+    width: 100%;
+    word-wrap: break-word;
+
+}
+.bloqueProducto img{
+
+    width: 150px;
+    height: 150px;
+
+}
+.bloqueListado{
+
+    display: grid;
+    grid-template-columns: 30% 70%;
+
+}
+.PanelLateral{
+
+    width: 70%;
+    border: 5px solid black;
+    background-color: aliceblue;
+    margin-left: 10%;
+    word-wrap: break-word;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
