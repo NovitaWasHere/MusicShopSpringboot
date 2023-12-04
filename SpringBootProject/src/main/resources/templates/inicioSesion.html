@@ -144,21 +144,26 @@ a:hover{
 
 }
 .icono{
-	
+
 	position: relative;
 	z-index: 1;
 	left: 100px;
 	top: 15px;
-	
+
+}
+#contra{
+
+display: grid;
+grid-template-columns: 95% 10%;
 }
 </style>
 <body>
     <header>
         <div class="icono"><a th:href="@{/}"><i class="fa-solid fa-music" style="color: #000000;font-size: 50px;"></i></a></div>
         <div class="botones">
-            <nav><a href=""><h1>Recomendaciones</h1></a></nav>
-            <nav><a href=""><h1>Sobre nosotros</h1></a></nav>
-            <nav><a th:href="@{inicioSesion}"><i class="fa-regular fa-user" style="color: #000000;font-size: 50px;"></i></a></nav>
+            <nav><a th:href="@{recomendaciones}"><h1>Recomendaciones</h1></a></nav>
+            <nav><a href="https://github.com/NovitaWasHere"><h1>Sobre nosotros</h1></a></nav>
+            <nav><a th:href="@{crud}"><i class="fa-regular fa-user" style="color: #000000;font-size: 50px;"></i></a></nav>
         </div>
     </header>
     <section class="section1">
@@ -171,12 +176,17 @@ a:hover{
                         <!-- Nombre -->
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text"  th:field="*{nombre}" class="form-control" id="names" >
+                        <input type="text"  th:field="*{nombre}" class="form-control" id="names" onkeypress="return check(event)" >
                     </div>
-                        <!-- Contraseña -->
-                    <div class="form-group">
-                        <label for="contrasena">Contraseña</label>
-                         <input type="text" th:field="*{contrasena}"  class="form-control"  id="passwords" >
+                    <!-- Contraseña -->
+                    <div class="form-group" >
+                        <label for="nombre">Contraseña</label>
+                        <div id="contra">
+                            <input type="password" th:field="*{contrasena}" class="form-control" onkeypress="return check(event)" id="contrasenas" required>
+                            <div class="col">
+                                <button class="btn btn-secondary" type="button" onclick="mostrarContrasena()"><i class="fa-solid fa-eye" style="color: #000000;font-size: 10px;"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -191,12 +201,35 @@ a:hover{
         <div class="icono"><a href=""><i class="fa-solid fa-music" style="color: #000000;font-size: 50px;"></i></a></div>
         <div class="botones">
             <nav><a href=""><h1>Recomendaciones</h1></a></nav>
-            <nav><a href=""><h1>Sobre nosotros</h1></a></nav>
+            <nav><a href="https://github.com/NovitaWasHere"><h1>Sobre nosotros</h1></a></nav>
         </div>
     </footer>
 </body>
 
 <script>
+    function check(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+
+        //Tecla de retroceso para borrar, siempre la permite
+        if (tecla == 8) {
+            return true;
+        }
+
+        // Patrón de entrada, en este caso solo acepta numeros y letras
+        patron = /[A-Za-z0-9]/;
+        tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+    
+    function mostrarContrasena(){
+        var tipo = document.getElementById("contrasenas");
+        if(tipo.type == "password"){
+            tipo.type = "text";
+        }else{
+            tipo.type = "password";
+        }
+    }
+
     window.onload = function(){
 
         let x = document.getElementById("heading");

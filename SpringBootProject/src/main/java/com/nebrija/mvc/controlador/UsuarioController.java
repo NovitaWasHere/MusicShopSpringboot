@@ -35,14 +35,48 @@ public class UsuarioController {
 	@GetMapping("/crud")
 	public String crud(Model modelo, HttpSession session){
 
+		List<Usuario> usuariosAdmin = (List<Usuario>) session.getAttribute("admin");
 		List<Usuario> usuarios = (List<Usuario>) session.getAttribute("usuario");
 
-		if (usuarios != null) {
+		if (usuariosAdmin != null) {
 
 			List<Usuario> usuario =  service.listarUsuario();
 			modelo.addAttribute("usuarios",usuario);
 			List<Instrumento> instrumento =  Iservice.listarInstrumento();
 			modelo.addAttribute("instrumentos",instrumento);
+
+			return null;
+
+		} else if(usuarios != null){
+
+			return "noAdmin";
+		}else {
+			// El usuario no está autenticado, redirige a la página de inicio de sesión
+			return "noIniciado";
+		}
+
+	}
+
+	@GetMapping("/noAdmin")
+	public String noAdmin(Model modelo, HttpSession session){
+
+		return "index";
+
+	}
+	@GetMapping("/cerrarSesion")
+	public String cerrarSesion(Model modelo, HttpSession session){
+
+		session.invalidate();
+		return "redirect:/";
+
+	}
+
+	@GetMapping("/noIniciado")
+	public String noIniciado(Model modelo, HttpSession session){
+
+		List<Usuario> usuarios = (List<Usuario>) session.getAttribute("usuario");
+
+		if (usuarios != null) {
 
 			return null;
 
@@ -53,12 +87,39 @@ public class UsuarioController {
 
 	}
 
+
 	@GetMapping("/inicioSesion")
-	public String iniciarSesion(Model modelo) {
+	public String iniciarSesion(Model modelo, HttpSession session) {
 
-		modelo.addAttribute("usuario", new UsuarioIniciar());
+		List<Usuario> usuarios = (List<Usuario>) session.getAttribute("usuario");
 
-		return "inicioSesion";
+		if (usuarios != null) {
+
+			return null;
+
+		} else {
+			// El usuario no está autenticado, redirige a la página de inicio de sesión
+			modelo.addAttribute("usuario", new UsuarioIniciar());
+
+			return "inicioSesion";
+		}
+
+	}
+
+
+	@GetMapping("/recomendaciones")
+	public String recomendaciones(HttpSession session) {
+
+		List<Usuario> usuarios = (List<Usuario>) session.getAttribute("usuario");
+
+		if (usuarios != null) {
+
+			return null;
+
+		} else {
+			// El usuario no está autenticado, redirige a la página de inicio de sesión
+			return "noIniciado";
+		}
 
 	}
 	
@@ -88,14 +149,14 @@ public class UsuarioController {
 					if(user.getRol() == 1){
 
 						session.setAttribute("usuario", usuario);
-						System.out.println("Se supone ya se crea el atributo de la sesion");
+						System.out.println("Se supone ya se crea el atributo de la sesion usuario normal");
 						return "redirect:/crud";
 
 					}else if(user.getRol() == 2){
 
 						session.setAttribute("usuario", usuario);
 						session.setAttribute("admin", usuario);
-						System.out.println("Se supone ya se crea el atributo de la sesion");
+						System.out.println("Se supone ya se crea el atributo de la sesion usuario administrador");
 						return "redirect:/crud";
 
 					}
@@ -194,13 +255,7 @@ public class UsuarioController {
 
 		List<Usuario> usuarios = (List<Usuario>) session.getAttribute("usuario");
 
-		if (usuarios != null) {
-
-			return "redirect:/crud";
-		} else {
-			// El usuario no está autenticado, redirige a la página de inicio de sesión
-			return "noIniciado";
-		}
+		return "redirect:/crud";
 
 	}
 

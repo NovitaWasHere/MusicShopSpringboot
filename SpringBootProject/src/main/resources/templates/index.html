@@ -149,8 +149,8 @@ a:hover{
     <header id="heading">
         <div class="icono"><a th:href="@{/}"><i class="fa-solid fa-music" style="color: #000000;font-size: 50px;"></i></a></div>
         <div class="botones">
-            <nav><a href=""><h1>Recomendaciones</h1></a></nav>
-            <nav><a href=""><h1>Sobre nosotros</h1></a></nav>
+            <nav><a th:href="@{recomendaciones}"><h1>Recomendaciones</h1></a></nav>
+            <nav><a href="https://github.com/NovitaWasHere"><h1>Sobre nosotros</h1></a></nav>
             <nav><a th:href="@{crud}"><i class="fa-regular fa-user" style="color: #000000;font-size: 50px;"></i></a></nav>
         </div>
     </header>
@@ -163,8 +163,8 @@ a:hover{
                 <div class="PanelLateral">
                     <h1>Descubre las caracteristicas y nuestras recomendaciones en nuestro apartado de informacion</h1>
                 </div>
-                <div class="bloqueGrid" th:each="instrumento:${instrumentos}">
-                    <div class="bloqueProducto">
+                <div class="bloqueGrid" >
+                    <div class="bloqueProducto" th:each="instrumento:${instrumentos}">
                         <h1 th:text="${instrumento.nombre}"></h1>
                         <img src="https://thumbs.dreamstime.com/b/violin-8128955.jpg" alt="">
                         <h3  th:text="${instrumento.precio}">$</h3>
@@ -177,8 +177,8 @@ a:hover{
     <footer>
         <div class="icono"><a href=""><i class="fa-solid fa-music" style="color: #000000;font-size: 50px;"></i></a></div>
         <div class="botones">
-            <nav><a href=""><h1>Recomendaciones</h1></a></nav>
-            <nav><a href=""><h1>Sobre nosotros</h1></a></nav>
+            <nav><a th:href="@{recomendaciones}"><h1>Recomendaciones</h1></a></nav>
+            <nav><a href="https://github.com/NovitaWasHere"><h1>Sobre nosotros</h1></a></nav>
         </div>
     </footer>
 </body>
